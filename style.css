@@ -1,0 +1,399 @@
+body {
+    margin: 0;
+    padding:40px;
+    color: rgb(3, 3, 3);
+    font-family:"Trebuchet MS", Arial, sans-serif;
+
+    background-image: url("imagens/sink.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1{
+    text-align:center;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    font-family:Georgia, "Times New Roman", serif;
+}
+
+.fotos{
+    display:grid;
+    grid-template-columns: 300px 500px 300px;
+    justify-content:center;
+    align-items:start;
+    gap:40px;
+    margin-top:50px;
+}
+
+.brasil,
+.filipinas{
+    width: 300px;
+    text-align:center;
+}
+
+.brasil img,
+.filipinas img{
+    width:100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius:15px;
+    border: 1px solid #444;
+}
+
+.frase{
+    text-align: center;
+    margin-top: 80px;
+    font-style: italic;
+    font-family:"Courier New", Courier, monospace;
+}
+
+.brasil p,
+.filipinas p{
+    font-size: 17px;
+    margin: 8px 0;
+    color: #020202;
+}
+
+.brasil h2,
+.filipinas h2{
+    font-size: 38px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    font-family:Georgia, "Times New Roman", serif;
+}
+
+.brasil p,
+.filipinas p{
+    margin:6px 0;
+}
+
+   /* .brasil img,
+    .filipinas img{
+        transition: transform 0.3s ease;
+    }
+
+    .brasil img:hover,
+    .filipinas img:hover{
+        transform: translateY(-8px);
+    }*/
+
+
+.brasil img,
+.filipinas img{
+    transition: transform .3s ease;
+    cursor: pointer;
+}
+
+.brasil img:hover,
+.filipinas img:hover{
+    transform: scale(1.05);
+}
+
+
+/*.fio{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 80%;
+    margin: 60px auto;
+}
+
+.linha{
+    flex:1;
+    height:2px;
+    background:#fff;
+    margin:0 15px;
+}
+
+.p,
+.b{
+    font-size:28px;
+    font-weight:bold;
+    cursor:pointer;
+    user-select:none;
+}
+
+
+.p,
+.b{
+    font-size:30px;
+    font-weight:bold;
+}
+
+
+.fio{
+    width:500px;
+} */
+
+
+.fio{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:90px;
+}
+
+.slider{
+
+    position:relative;
+
+    width:550px;
+    height:2px;
+
+    background:rgba(216, 216, 216, .55);
+
+    border-radius:999px;
+
+}
+
+.pino{
+
+    position:absolute;
+
+    top:50%;
+
+    width:26px;
+    height:26px;
+
+    border-radius:50%;
+
+    background:rgba(34, 34, 34, .7);
+
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-weight:bold;
+    font-size:12px;
+
+    transform:translateY(-50%);
+
+    cursor:default;
+
+    user-select:none;
+
+}
+
+.encontro{
+    position:fixed;
+    inset:0;
+    z-index:10;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    pointer-events:none;
+    visibility:hidden;
+}
+
+.encontro img{
+    width:min(90vw, 1000px);
+    height:auto;
+    max-height:85vh;
+    object-fit:cover;
+    opacity:0;
+    filter:blur(30px);
+    transform:scale(1.06);
+}
+
+.encontro.ativo{
+    visibility:visible;
+}
+
+.encontro.ativo img{
+    animation:revelar-encontro 7s linear forwards;
+}
+
+.fechar-encontro{
+    position:fixed;
+    top:20px;
+    right:24px;
+    z-index:1;
+    width:44px;
+    height:44px;
+    border:0;
+    border-radius:50%;
+    background:rgba(0, 0, 0, .7);
+    color:white;
+    cursor:pointer;
+    font-size:32px;
+    line-height:1;
+    opacity:0;
+    pointer-events:auto;
+    transition:opacity .2s ease, background .2s ease;
+}
+
+.encontro.ativo .fechar-encontro{
+    opacity:1;
+}
+
+.fechar-encontro:hover{
+    background:rgba(0, 0, 0, .9);
+}
+
+.mensagem-musica{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:20;
+    width:min(86vw, 420px);
+    box-sizing:border-box;
+    padding:20px 48px 20px 20px;
+    border:1px solid rgba(255, 255, 255, .35);
+    border-radius:14px;
+    background:rgba(20, 20, 20, .92);
+    color:white;
+    box-shadow:0 8px 28px rgba(0, 0, 0, .35);
+    font-family:"Trebuchet MS", Arial, sans-serif;
+    font-size:15px;
+    line-height:1.45;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(12px);
+    transition:opacity .25s ease, transform .25s ease, visibility .25s;
+}
+
+.mensagem-musica.ativa{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.mensagem-musica p{
+    margin:0;
+}
+
+.fechar-mensagem{
+    position:absolute;
+    top:8px;
+    right:10px;
+    width:30px;
+    height:30px;
+    border:0;
+    border-radius:50%;
+    background:transparent;
+    color:white;
+    cursor:pointer;
+    font-size:25px;
+    line-height:1;
+}
+
+.fechar-mensagem:hover{
+    background:rgba(255, 255, 255, .15);
+}
+
+@keyframes revelar-encontro{
+    0%{
+        opacity:.9;
+        filter:blur(30px);
+        transform:scale(1.06);
+    }
+
+    12%{
+        transform:scale(1.06) translate(-.2%, .15%) rotate(-.15deg);
+    }
+
+    24%{
+        transform:scale(1.06) translate(.2%, -.15%) rotate(.15deg);
+    }
+
+    36%{
+        transform:scale(1.06) translate(-.3%, -.2%) rotate(-.2deg);
+    }
+
+    48%{
+        transform:scale(1.06) translate(.3%, .2%) rotate(.2deg);
+    }
+
+    60%{
+        transform:scale(1.06) translate(-.45%, .3%) rotate(-.3deg);
+    }
+
+    72%{
+        transform:scale(1.06) translate(.45%, -.3%) rotate(.3deg);
+    }
+
+    84%{
+        opacity:.9;
+        filter:blur(30px);
+        transform:scale(1.08) translate(-.7%, .5%) rotate(-.5deg);
+    }
+
+    86%{
+        opacity:.9;
+        filter:blur(30px);
+        transform:scale(1.1) translate(.8%, -.6%) rotate(.6deg);
+    }
+
+    89%{
+        opacity:1;
+        filter:blur(22px);
+        transform:scale(1.16) translate(-1.8%, 1.2%) rotate(-.9deg);
+    }
+
+    92%{
+        filter:blur(12px);
+        transform:scale(1.08) translate(1.4%, -1.2%) rotate(.8deg);
+    }
+
+    96%{
+        filter:blur(3px);
+        transform:scale(1.02) translate(-.7%, .6%) rotate(-.4deg);
+    }
+
+    100%{
+        opacity:1;
+        filter:blur(0);
+        transform:scale(1);
+    }
+}
+
+@media (max-width: 900px){
+    body{
+        padding:24px 20px;
+    }
+
+    h1{
+        margin-bottom:30px;
+    }
+
+    .fotos{
+        grid-template-columns:1fr;
+        justify-items:center;
+        gap:42px;
+        margin-top:30px;
+    }
+
+    .fio{
+        width:100%;
+        margin-top:0;
+    }
+
+    .slider{
+        width:100%;
+    }
+
+    .frase{
+        margin-top:48px;
+    }
+}
+
+@media (max-width: 420px){
+    .brasil h2,
+    .filipinas h2{
+        font-size:32px;
+    }
+
+    .mensagem-musica{
+        right:50%;
+        transform:translate(50%, 12px);
+    }
+
+    .mensagem-musica.ativa{
+        transform:translate(50%, 0);
+    }
+}
